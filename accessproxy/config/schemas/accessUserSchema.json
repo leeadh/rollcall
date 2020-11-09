@@ -1,0 +1,238 @@
+[
+{
+  "name": "User",
+  "description": "SCIM extended resource for representing users",
+  "schema": "urn:scim:schemas:core:1.0",
+  "endpoint": "Users",
+  "attributes": [
+    {
+      "name": "userStoreUuid",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the userStoreUuid of the resource",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "domain",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the domain of the resource,when specified the resource is created under the directory which matches with the supplied domain. NOTE: System defaults domain to \"System Domain\".",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": false,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "userStatus",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the user status of the resource",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "internalUserType",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the internal user type of the resource, Valid values are \"LOCAL\" and \"PROVISIONED\". The default, if not provided, is \"LOCAL\". NOTE: When creating users and internalUserType is set to \"PROVISIONED\", must also supply the \"domain\" and \"externalId\", otherwise will result in a bad request (401) error response.",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "distinguishedName",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the directory distinguished name of the resource if available",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": false,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "userPrincipalName",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the user principal name of the resource if available",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": false,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "externalUserDisabled",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "Identifies whether the user is marked as disabled in the external user source",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": false,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "otaLink",
+      "type": "string",
+      "multiValued": false,
+      "description": "One time authorization (OTA) link to access the user account and change password. The system automatically generates the OTA link for local users (internalUserType is \"LOCAL\") when a password is not provided or a password change is requested. NOTE: This attribute is only populated in the response if email notification fails or is not configured.",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "directoryUuid",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the directory uuid of the resource",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "directoryName",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the directory name of the resource",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "directoryType",
+      "type": "string",
+      "multiValued": false,
+      "description": "Identifies the directory type of the resource",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "isPasswordChangeFeatureEnabled",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "Specifies whether password change feature is enabled for Active Directories",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "isSoftDeleted",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "A Boolean attribute set to \"true\" for any resource that is soft deleted.  This attribute is not populated unless requested. No value or \"false\" means the resource is not soft deleted.  This attribute has mutability of \"readOnly\"",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "userGroups",
+      "type": "complex",
+      "multiValued": true,
+      "multiValuedAttributeChildName": "group",
+      "description": "A list of groups that the user belongs to along with group distinguishedName. The userGroups are populated only when its requested i.e. attributes=\"userGroups\"",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false,
+      "subAttributes": [
+        {
+          "name": "display",
+          "type": "string",
+          "multiValued": false,
+          "description": "A human readable name, primarily used for display purposes",
+          "readOnly": true,
+          "required": false,
+          "caseExact": false
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "multiValued": false,
+          "description": "Unique identifier for the SCIM Resource as defined by the Service Provider",
+          "readOnly": true,
+          "required": true,
+          "caseExact": false
+        },
+        {
+          "name": "distinguishedName",
+          "type": "string",
+          "multiValued": false,
+          "description": "Identifies the directory distinguished name of group if available",
+          "readOnly": true,
+          "required": false,
+          "caseExact": false
+        },
+        {
+          "name": "domain",
+          "type": "string",
+          "multiValued": false,
+          "description": "Identifies the domain of the resource,when specified the resource is created under the directory which matches with the supplied domain. NOTE: System defaults domain to \"System Domain\".",
+          "readOnly": false,
+          "required": false,
+          "caseExact": false
+        },
+        {
+          "name": "externalId",
+          "type": "string",
+          "multiValued": false,
+          "description": "Unique identifier for the Resource as defined by the Service Consumer",
+          "readOnly": false,
+          "required": false,
+          "caseExact": false
+        }
+      ]
+    },
+    {
+      "name": "isUserInPreHireGroup",
+      "type": "boolean",
+      "multiValued": false,
+      "description": "Specifies whether the user belongs to the pre-hire group",
+      "schema": "urn:scim:schemas:core:1.0",
+      "readOnly": true,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "hubMfaPreferredUDID",
+      "type": "string",
+      "multiValued": false,
+      "description": "hubMfaPreferredUDID",
+      "schema": "urn:scim:schemas:extension:workspace:mfa:1.0",
+      "readOnly": false,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "mfaId",
+      "type": "string",
+      "multiValued": false,
+      "description": "mfaId",
+      "schema": "urn:scim:schemas:extension:workspace:mfa:1.0",
+      "readOnly": false,
+      "required": false,
+      "caseExact": false
+    },
+    {
+      "name": "mfaPhoneNumber",
+      "type": "string",
+      "multiValued": false,
+      "description": "mfaPhoneNumber",
+      "schema": "urn:scim:schemas:extension:workspace:mfa:1.0",
+      "readOnly": false,
+      "required": false,
+      "caseExact": false
+    }
+  ]
+}
+]

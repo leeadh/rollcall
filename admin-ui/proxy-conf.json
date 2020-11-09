@@ -1,0 +1,10 @@
+{
+    "/access/*": {
+       "target": "http://localhost:8888",
+       "secure":false,
+       "changeOrigin": true,
+       "headers": {"Authorization": "Bearer bG9sOnNlY3VyZQ"},
+       "logLevel": "debug"
+    }
+
+  }

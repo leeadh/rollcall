@@ -1,0 +1,38 @@
+{
+  "accessproxy": {
+    "port": 8888,
+    "localhostonly": false,
+    "scim": {
+      "version": "2.0",
+      "customSchema": "accessUserSchema.json"
+    },
+    "log": {
+      "loglevel": {
+        "file": "info",
+        "console": "info"
+      },
+      "customMasking": false
+    },
+    "auth": {
+      "bearerToken": [
+        {
+          "token": "",
+          "readOnly": false
+        }
+      ]
+    }
+  },
+  "endpoint": {
+    "entity": {
+      "access": {
+        "baseUrls": [
+          "https://YOUR_WORKSPACE_ONE_ACCESS_TENANT_URL/SAAS/jersey/manager/api/scim"
+        ],
+        "clientId": "YOUR_CLIENTID",
+        "clientSecret": "",
+        "domain": "YOUR_DOMAIN_NAME",
+        "oauthUrl": "https://YOUR_WORKSPACE_ONE_ACCESS_TENANT_URL/SAAS/auth/oauthtoken"
+      }
+  }
+}
+}

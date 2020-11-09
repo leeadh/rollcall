@@ -1,0 +1,90 @@
+<div class="clr-row" id="first">
+    <div class="clr-col-12" *ngIf="isSuccess">
+    <div class="alert alert-success" role="alert" id="alert-success">
+        <div class="alert-items">
+          <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+              <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+              Directory created successfully.
+            </span>
+          </div>
+        </div>
+        <button type="button" class="close" aria-label="Close" (click)="hideSuccess()">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+          </button>  
+    </div>
+    </div>
+    <div class="clr-col-12">
+        <div class="alert alert-danger" role="alert" id="alert-error" *ngIf="isError">
+            <div class="alert-items">
+              <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                  <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                  Directory creation failed.
+                </span>
+              </div>
+            </div>
+            <button type="button" class="close" aria-label="Close" (click)="hideError()">
+                <clr-icon aria-hidden="true" shape="close"></clr-icon>
+              </button>  
+        </div>
+        </div>
+</div>
+
+<div class="clr-row" id="second">
+    <div class="clr-col-6">
+        <span>
+          <div>
+              <h3>Create Directory for SCIM Provisioning</h3>
+              <form class="clr-form clr-form-vertical">
+                <div class="clr-form-control">
+                    <label for="friendly_name" class="clr-control-label">Friendly Name</label>
+                    <div class="clr-control-container">
+                        <div class="clr-input-wrapper">
+                            <input type="text" size="35" [(ngModel)]="newDomain.friendly_name" name="friendly_name" placeholder="eg. My Company Directory" class="clr-input"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="clr-form-control">
+                    <label for="domain_name" class="clr-control-label">Domain Name</label>
+                    <div class="clr-control-container">
+                        <div class="clr-input-wrapper">
+                            <input type="text" size="35" [(ngModel)]="newDomain.domain_name" name="domain_name" placeholder="eg. company.com" class="clr-input"/>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <button [clrLoading]="createBtnState" (click)="onClick()" class="btn btn-info-outline">CREATE</button>
+              
+            </div>
+        </span>
+      </div>  
+<div class="clr-col-6">
+      <span>
+        <h3>Existing Directories</h3>
+<div style="padding-left: 0;">
+<table class="table">
+    <thead>
+        <tr>
+            <th class="left">Name</th>
+            <th class="left">Type</th>
+            <th class="left">ID</th>
+
+        </tr>
+    </thead>
+    <tbody *ngIf="Domains">
+        <tr *ngFor="let domain of Domains.body.items">
+            <td class="left">{{ domain.name }}</td>
+            <td class="left">{{ domain.type }}</td>
+            <td class="left">{{ domain.directoryId }}</td>
+          </tr>
+    </tbody>
+</table>
+</div>
+</span>
+</div>
+</div>

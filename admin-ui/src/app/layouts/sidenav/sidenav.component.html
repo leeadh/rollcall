@@ -1,0 +1,24 @@
+<div *ngIf="router.url.includes('tools')">
+<nav class="sidenav">
+<section class="nav-group collapsible">
+  <input id="tabtitle" type="checkbox">
+  <label for="tabtitle">Rollcall Tools</label>
+  <ul class="nav-list">
+      <li><clr-icon shape="flask"></clr-icon><a routerLink="tools/create-directory" [skipLocationChange]='false' class="nav-link" >Create Directory</a></li>
+  </ul>
+</section>
+</nav>
+</div>
+
+
+<div *ngIf="router.url.includes('config')">
+  <nav class="sidenav">
+  <section class="nav-group collapsible">
+    <input id="tabtitleconfig" type="checkbox">
+    <label for="tabtitleconfig">Rollcall Configuration</label>
+    <ul class="nav-list">
+        <li><clr-icon shape="cog"></clr-icon><a routerLink="config" [skipLocationChange]='true' class="nav-link is-active" >View Config</a></li>
+    </ul>
+  </section>
+  </nav>
+  </div>

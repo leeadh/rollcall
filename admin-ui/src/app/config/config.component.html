@@ -1,0 +1,67 @@
+<h2>Current Configuration File Data</h2>
+<div>
+<h3>Backend Proxy Config</h3>
+<p>This is the configuration contained within your proxy-conf.json file. This <b>MUST</b> with correlate the configuration of the <b>Access Proxy</b> backend component <i>(port, protocol and URL)</i> as <b>accessproxy</b> proxies the requests through to your Workspace ONE Access tenant.</p>
+<br>
+</div>
+<!--- Success Message if proxy working correctly -->
+<div class="alert alert-success" *ngIf="isAlive; else notalive">
+  <div class="alert-items">
+    <div class="alert-item static">
+      <div class="alert-icon-wrapper">
+        <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+      </div>
+      <span class="alert-text">
+        Successfully communicated with your Workspace ONE Access tenant using the backend Access Proxy.
+      </span>
+    </div>
+  </div>
+</div>
+<!--- Alert if proxy not working -->
+<ng-template #notalive>
+<div class="alert alert-danger">
+  <div class="alert-items">
+    <div class="alert-item static" role="alert">
+      <div class="alert-icon-wrapper">
+        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+      </div>
+      <span class="alert-text">
+        Could not communicate with Workspace ONE Access. Check your configuration below and accessproxy configuration file.
+
+      </span>
+    </div>
+  </div>
+  <button type="button" class="close" aria-label="Close">
+    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+  </button>
+</div>
+</ng-template>
+<div *ngFor="let config of newnewconf">
+<table class="table table-vertical">
+  <tbody>
+    <tr>
+      <th>Target (accessproxy url and port)</th>
+      <td>{{ config.target }}</td>
+    </tr>
+    <tr>
+      <th>Secure</th>
+      <td>{{ config.secure }}</td>
+    </tr><tr>
+      <th>Change Origin</th>
+      <td>{{ config.changeOrigin }}</td>
+    </tr><tr>
+      <th>Headers</th>
+      <td *ngIf="config.headers.Authorization; else falseDiv">SET <i>(hidden)</i></td>
+      <ng-template #falseDiv>
+      <td >NOT SET</td>
+      </ng-template>
+    </tr><tr>
+      <th>Log Level</th>
+      <td>{{ config.logLevel }}</td>
+    </tr><tr>
+      <th>Proxy Trigger Path</th>
+      <td>{{ this.path }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
