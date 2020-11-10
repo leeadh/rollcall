@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "config": "ts-node ./scripts/setenv.ts",
-    "start": "npm run config -- --environment=dev && ng serve --proxy-config proxy-conf.json",
+    "start": "npm run config -- --environment=dev && ng serve",
+    "postinstall": "node scripts/postinstall.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
