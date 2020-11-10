@@ -10,7 +10,7 @@ This is an interface to allow SCIM provisioning for Users and Groups between Azu
 
 Install Instructions here:
 
-<link>
+[Install Instructions](https://github.com/tbwfdu/rollcall/wiki/Install-Instructions)
 
 --------
 v1.0.0 - Initial Release
