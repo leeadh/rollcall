@@ -1,7 +1,7 @@
 const { writeFile } = require('fs');
 const { argv } = require('yargs');
-
-
+const nodeId = require('node-machine-id');
+const envmachineid = nodeId.machineIdSync();
 // read environment variables from .env file
 require('dotenv').config();
 
@@ -22,9 +22,9 @@ const targetPath = isProduction
 const environmentFileContent = `
 export const environment = {
   production: ${isProduction},
+  envmachineid: ${envmachineid}
 };
 `;
-
 // write the content to the respective file
 writeFile(targetPath, environmentFileContent, function (err) {
   if (err) {

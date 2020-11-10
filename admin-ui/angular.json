@@ -71,7 +71,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rollcall-ui:build"
+            "browserTarget": "rollcall-ui:build",
+            "proxyConfig": "./proxy.conf.js"
           },
           "configurations": {
             "production": {
