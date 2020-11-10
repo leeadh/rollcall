@@ -56,5 +56,11 @@
     "tslint": "~6.1.0",
     "typescript": "~4.0.2",
     "yargs": "^16.1.0"
+  },
+  "browser": {
+    "child_process": false,
+    "fs": false,
+    "crypto": false,
+    "path": false
   }
 }
