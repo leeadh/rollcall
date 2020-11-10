@@ -36,7 +36,7 @@ API_KEY =  ${encryptedBearer}
 `;
 
 // Write the encrypted Bearer token to a .env file to be read at startup
-writeFile(`../.env`, envFileContent, function(err) {
+writeFile(`./.env`, envFileContent, function(err) {
   if (err) {
     console.log(err);
   }
@@ -47,7 +47,7 @@ setTimeout(() => {
 
 // Write the TEMP UNENCRYPTED Bearer token to a file to be added to your conf-wsoneaccess.js file.
 const tempfileContent = `${bearer}`;
-writeFile(`../ACCESS_PROXY_BEARER.deleteme`, tempfileContent, function(err) {
+writeFile(`./ACCESS_PROXY_BEARER.deleteme`, tempfileContent, function(err) {
   if (err) {
     console.log(err);
   }
