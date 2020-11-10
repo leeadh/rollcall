@@ -22,7 +22,7 @@ const targetPath = isProduction
 const environmentFileContent = `
 export const environment = {
   production: ${isProduction},
-  envmachineid: ${envmachineid}
+  API_KEY: "${process.env.API_KEY}",
 };
 `;
 // write the content to the respective file
@@ -30,6 +30,5 @@ writeFile(targetPath, environmentFileContent, function (err) {
   if (err) {
     console.log(err);
   }
-
   console.log(`Wrote variables to ${targetPath}`);
 });
