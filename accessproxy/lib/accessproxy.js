@@ -183,7 +183,7 @@ const AccessProxy = function () {
   if (config.emailOnError.smtp.password) config.emailOnError.smtp.password = AccessProxy.prototype.getPassword('accessproxy.emailOnError.smtp.password', configFile)
 
   if (!foundBasic && !foundBearerToken && !foundBearerJwtAzure && !foundBearerJwt) {
-    logger.error(`${gwName}[${pluginName}] Scimgateway password decryption failed or no password defined`)
+    logger.error(`${gwName}[${pluginName}] Access Proxy password decryption failed or no password defined`)
     logger.error(`${gwName}[${pluginName}] stopping...\n`)
     throw (new Error('Using exception to stop further asynchronous code execution (ensure synchronous logger flush to logfile and exit program), please ignore this one...'))
   }

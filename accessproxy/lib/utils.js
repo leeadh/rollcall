@@ -60,8 +60,8 @@ module.exports.getPassword = function (pwDotNotation, configFile) {
 
   if (pw) {
     if (pw.includes('process.')) { // password based on external reference e.g. environment or json file
-      // syntax environment = "process.env.<ENVIRONMENT>" e.g. scimgateway.password could have value "process.env.PORT", then using environment variable PORT
-      // syntax file = "process.file.<PATH>" e.g. scimgateway.password could have value "process.file./tmp/myconf.json"
+      // syntax environment = "process.env.<ENVIRONMENT>" e.g. accessproxy.password could have value "process.env.PORT", then using environment variable PORT
+      // syntax file = "process.file.<PATH>" e.g. accessproxy.password could have value "process.file./tmp/myconf.json"
       const processEnv = 'process.env.'
       const processFile = 'process.file.'
       if (pw.constructor === String && pw.includes(processEnv)) {
@@ -149,7 +149,7 @@ module.exports.JSONStringify = function (object) {
 
 Object.prop = function (obj, prop, val) { // return obj value based on json dot notation formatted prop
   if (obj.hasOwnProperty(prop)) return obj[prop]
-  const props = prop.split('.') // scimgateway.auth.basic[0].password
+  const props = prop.split('.') // accessproxy.auth.basic[0].password
   const final = props.pop()
   for (let i = 0; i < props.length; i++) {
     const p = props[i]

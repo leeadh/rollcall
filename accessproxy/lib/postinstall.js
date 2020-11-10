@@ -19,7 +19,7 @@ if (!fsExistsSync('../../config/certs')) fs.mkdirSync('../../config/certs')
 if (!fsExistsSync('../../config/schemas')) fs.mkdirSync('../../config/schemas')
 if (!fsExistsSync('../../lib')) fs.mkdirSync('../../lib')
 
-if (!fsExistsSync('../../config/plugin-acessproxy.json')) fs.writeFileSync('../../config/plugin-acessproxy.json', fs.readFileSync('./config/plugin-acessproxy.json')) // keep existing
+if (!fsExistsSync('../../config/conf-acessproxy.json')) fs.writeFileSync('../../config/conf-acessproxy.json', fs.readFileSync('./config/conf-acessproxy.json')) // keep existing
 
 if (!fsExistsSync('../../config/wsdls/GroupService.wsdl'))
   fs.writeFileSync('../../config/wsdls/GroupService.wsdl', fs.readFileSync('./config/wsdls/GroupService.wsdl'))
