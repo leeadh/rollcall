@@ -1,5 +1,6 @@
-const cryptojs = require('crypto-js');
-const nodeId = require('node-machine-id');
+const cryptojs = require('crypto-js')
+const nodeId = require('node-machine-id')
+const { writeFile } = require('fs');
 require('dotenv').config();
 
 const machineId = nodeId.machineIdSync();
@@ -12,10 +13,28 @@ const PROXY_CONFIG = [
             "/access/*"
         ],
         "target": "http://localhost:8888",
-        "secure":false,
+        "secure": false,
         "changeOrigin": true,
         "headers": {"Authorization": "Bearer " + decryptedkey},
         "logLevel": "debug"
     }
 ]
 module.exports = PROXY_CONFIG;
+const jconfig = PROXY_CONFIG[0];
+const proxyOutput = `
+{
+  "path": "${jconfig.context}",
+  "target": "${jconfig.target}",
+  "secure": ${jconfig.secure},
+  "changeOrigin": ${jconfig.changeOrigin},
+  "logLevel": "${jconfig.logLevel}"
+}
+`;
+
+// write the content to the respective file
+writeFile(`proxy-config.json`, proxyOutput, function (err) {
+  if (err) {
+    console.log(err);
+  }
+  console.log(`Wrote proxy config`);
+});

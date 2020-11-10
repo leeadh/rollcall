@@ -51,5 +51,5 @@ writeFile(`./ACCESS_PROXY_BEARER.deleteme`, tempfileContent, function(err) {
   if (err) {
     console.log(err);
   }
-  console.log(`### Wrote TEMPORARY UNENCRYPTED key to be added to the accessproxy config. Please make sure you delete this file after saving the content to your conf-wsoneaccess.js file. ###`);
+  console.log(`Wrote TEMPORARY UNENCRYPTED key to be added to the accessproxy config. Please make sure you delete this file after saving the content to your conf-wsoneaccess.js file.`);
 });

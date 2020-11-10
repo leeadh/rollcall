@@ -1,7 +1,6 @@
 import { CheckProxy } from './../service/check-proxy.service';
 import { Component, OnInit } from '@angular/core';
-import * as proxyconf from '../../../proxy-conf.json';
-
+import * as proxyconf from '../../../proxy-config.json';
 
 @Component({
   selector: 'app-config',
@@ -12,14 +11,10 @@ export class ConfigComponent implements OnInit {
   isAlive: boolean;
   checkResult: {};
   proxyconfig: any = (proxyconf as any).default;
-  path = Object.getOwnPropertyNames(this.proxyconfig);
-  conf: any[] = Array.of(this.proxyconfig);
-  newconf = this.conf.shift();
-  newnewconf = Object.values(this.newconf);
-
   constructor(private CheckProxy: CheckProxy) { }
 
  ngOnInit(): void {
+  console.log(this.proxyconfig);
   this.CheckProxy.checkProxy().subscribe(headers => {
     this.checkResult = headers;
     console.log(this.checkResult);

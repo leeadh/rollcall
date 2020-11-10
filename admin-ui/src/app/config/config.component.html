@@ -36,31 +36,29 @@
   </button>
 </div>
 </ng-template>
-<div *ngFor="let config of newnewconf">
+<!--
+<div *ngFor="let config of proxyconfig">
+-->
+<div>
+
 <table class="table table-vertical">
   <tbody>
     <tr>
       <th>Target (accessproxy url and port)</th>
-      <td>{{ config.target }}</td>
+      <td>{{ proxyconfig.target }}</td>
     </tr>
     <tr>
       <th>Secure</th>
-      <td>{{ config.secure }}</td>
+      <td>{{ proxyconfig.secure }}</td>
     </tr><tr>
       <th>Change Origin</th>
-      <td>{{ config.changeOrigin }}</td>
-    </tr><tr>
-      <th>Headers</th>
-      <td *ngIf="config.headers.Authorization; else falseDiv">SET <i>(hidden)</i></td>
-      <ng-template #falseDiv>
-      <td >NOT SET</td>
-      </ng-template>
+      <td>{{ proxyconfig.changeOrigin }}</td>
     </tr><tr>
       <th>Log Level</th>
-      <td>{{ config.logLevel }}</td>
+      <td>{{ proxyconfig.logLevel }}</td>
     </tr><tr>
       <th>Proxy Trigger Path</th>
-      <td>{{ this.path }}</td>
+      <td>{{ proxyconfig.path }}</td>
     </tr>
   </tbody>
 </table>
