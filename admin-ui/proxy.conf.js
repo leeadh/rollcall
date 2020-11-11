@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const machineId = nodeId.machineIdSync();
 const decryptedkey = cryptojs.AES.decrypt(process.env.API_KEY, machineId.toString()).toString(cryptojs.enc.Utf8);
-console.log(decryptedkey);
 
 const PROXY_CONFIG = [
     {
@@ -23,11 +22,13 @@ module.exports = PROXY_CONFIG;
 const jconfig = PROXY_CONFIG[0];
 const proxyOutput = `
 {
-  "path": "${jconfig.context}",
-  "target": "${jconfig.target}",
-  "secure": ${jconfig.secure},
-  "changeOrigin": ${jconfig.changeOrigin},
-  "logLevel": "${jconfig.logLevel}"
+  "local": {
+    "path": "${jconfig.context}",
+    "target": "${jconfig.target}",
+    "secure": ${jconfig.secure},
+    "changeOrigin": ${jconfig.changeOrigin},
+    "logLevel": "${jconfig.logLevel}"
+  }
 }
 `;
 
@@ -36,5 +37,5 @@ writeFile(`proxy-config.json`, proxyOutput, function (err) {
   if (err) {
     console.log(err);
   }
-  console.log(`Wrote proxy config`);
+  console.log(`Wrote proxy configuration output to .JSON`);
 });
