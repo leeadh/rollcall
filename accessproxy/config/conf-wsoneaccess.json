@@ -16,7 +16,7 @@
     "auth": {
       "bearerToken": [
         {
-          "token": "",
+          "token": "TOKEN_FROM_ACCESS_BEARER_PROXY.deleteme_FILE",
           "readOnly": false
         }
       ]
@@ -29,7 +29,7 @@
           "https://YOUR_WORKSPACE_ONE_ACCESS_TENANT_URL/SAAS/jersey/manager/api/scim"
         ],
         "clientId": "YOUR_CLIENTID",
-        "clientSecret": "",
+        "clientSecret": "YOUR_CLIENT_SECRET",
         "domain": "YOUR_DOMAIN_NAME",
         "oauthUrl": "https://YOUR_WORKSPACE_ONE_ACCESS_TENANT_URL/SAAS/auth/oauthtoken"
       }
