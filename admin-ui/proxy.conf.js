@@ -9,7 +9,7 @@ const decryptedkey = cryptojs.AES.decrypt(process.env.API_KEY, machineId.toStrin
 const PROXY_CONFIG = [
     {
         context: [
-            "/access/*"
+            "/access"
         ],
         "target": "http://localhost:8888",
         "secure": false,

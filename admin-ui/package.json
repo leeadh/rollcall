@@ -5,6 +5,7 @@
     "ng": "ng",
     "config": "ts-node ./scripts/setenv.ts",
     "start": "npm run config -- --environment=dev && ng serve",
+    "start-ui": "npm run config -- --environment=prod && ng serve --host 0.0.0.0 --disable-host-check --prod",
     "postinstall": "node postinstall.js",
     "build": "ng build",
     "test": "ng test",
