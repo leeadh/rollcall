@@ -34,6 +34,25 @@ const encryptedBearer = cryptojs.AES.encrypt(bearer, machineId.toString());
 const envFileContent = `
 API_KEY =  ${encryptedBearer}
 `;
+const accessproxy = 'http://localhost:8888/access'
+const environment = `
+{
+  "local": {
+    "accessproxy": "${accessproxy}",
+    "bearer": "${bearer}",
+    "encryptedBearer": "${encryptedBearer}",
+    "machineId": "${machineId}"
+  }
+}
+`;
+
+// write the content to the respective file
+writeFile(`./config/env.json`, environment, function (err) {
+  if (err) {
+    console.log(err);
+  }
+  console.log(`Wrote env details to env.json`);
+});
 
 // Write the encrypted Bearer token to a .env file to be read at startup
 writeFile(`.env`, envFileContent, function(err) {

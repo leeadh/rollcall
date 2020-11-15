@@ -23,6 +23,7 @@ const fs = require('fs')
 const path = require('path')
 const callsite = require('callsite')
 const utils = require('../lib/utils')
+const cors = require('@koa/cors')
 let scimDef = null
 let isMailLock = false
 
@@ -407,6 +408,11 @@ const AccessProxy = function () {
 
   // Middleware run in the order they are defined and communicates through ctx
   // There is no return value, if there were it would be ignored
+
+  // Adding CORS to remove Angular proxy dependency
+  app.use(cors('Access-Control-Allow-Credentials', 'true'))
+  app.use(cors('Access-Control-Allow-Origin', '*'))
+
   app.use(logResult)
   app.use(bodyParser({ // parsed body store in ctx.request.body
     enableTypes: ['json'],

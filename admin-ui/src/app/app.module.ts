@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppService } from './app.service';
 import { ConfigComponent } from './config/config.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -21,7 +22,9 @@ import { ContentComponent } from './layouts/content/content.component';
 import { ContentsidenavComponent } from './layouts/contentsidenav/contentsidenav.component';
 import { SidenavComponent } from './layouts/sidenav/sidenav.component';
 
-
+export function init_app(appService: AppService) {
+  return () => { };
+}
 
 @NgModule({
   declarations: [
@@ -37,7 +40,6 @@ import { SidenavComponent } from './layouts/sidenav/sidenav.component';
     ContentComponent,
     ContentsidenavComponent,
     SidenavComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,14 @@ import { SidenavComponent } from './layouts/sidenav/sidenav.component';
     HttpClientModule,
     CommonModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: init_app,
+      multi: true,
+      deps: [AppService]
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

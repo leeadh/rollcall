@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -11,8 +11,10 @@ import { HttpClient } from '@angular/common/http';
 
 export class CheckProxy {
   constructor(private httpclient: HttpClient) { }
-  path = '/access/Users';
-  public checkProxy(): Observable<Response[]> {
-    return this.httpclient.get<Response[]>('/access/Users').pipe(map((headers: any) => headers));
-  }
+  headers = new HttpHeaders()
+  .set('Authorization', 'Bearer 123456789')
+  .set('Access-Control-Allow-Origin', '*');
+public checkProxy(): Observable<Response[]> {
+return this.httpclient.get<Response[]>('http://localhost:8888/access/Users?attributes=userName&filter=userName%20eq%20%22adminsdsdsdsds%22', { 'headers': this.headers }).pipe(map((headers: any) => headers));
+}
 }
