@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ConfigComponent } from './config/config.component';
 import { HomeComponent } from './home/home.component';
 import { ToolsComponent } from './tools/tools.component';
 import { CreateDirectoryComponent } from './tools/create-directory/create-directory.component';
@@ -22,8 +21,7 @@ const appRoutes: Routes = [
       component: MainSidenavComponent,
       children: [
         { path: 'tools', component: ToolsComponent },
-        { path: 'tools/create-directory', component: CreateDirectoryComponent},
-        { path: 'config', component: ConfigComponent},
+        { path: 'tools/create-directory', component: CreateDirectoryComponent}
       ]
     },
   ];

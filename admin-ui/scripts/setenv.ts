@@ -22,7 +22,6 @@ const targetPath = isProduction
 const environmentFileContent = `
 export const environment = {
   production: ${isProduction},
-  API_KEY: "${process.env.API_KEY}",
 };
 `;
 // write the content to the respective file

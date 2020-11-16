@@ -4,6 +4,7 @@
 // author: Pete Lindley
 //
 // purpose: Generate a token to be used for JWT auth against accessproxy
+// and generate .env and env.json files to be read as environment vars
 //
 //==========================================================================
 
@@ -33,7 +34,10 @@ const bearer = genBearer(50);
 // Encrypt the bearer using the local machine ID
 const encryptedBearer = cryptojs.AES.encrypt(bearer, machineId.toString());
 
-// Contents to be written to the .env file
+// Default accessproxy url and listening port
+const accessproxy = 'http://localhost:8888/access'
+
+// Contents to be written to the .env file for accessproxy
 const envFileContent = `
 BEARER=${bearer}
 BASEURL=${process.env.BASEURL}
@@ -43,7 +47,8 @@ DOMAIN=${process.env.DOMAIN}
 OAUTHURL=${process.env.OAUTHURL}
 ACCESSURL=${process.env.ACCESSURL}
 `;
-const accessproxy = 'http://localhost:8888/access'
+
+// Contents to be written to the env.json file for Admin UI
 const environment = `
 {
   "local": {
@@ -56,12 +61,12 @@ const environment = `
 }
 `;
 
-// write the content to the respective file
+// Contents to be written to the env.json file for Admin UI
 writeFile(`./config/env.json`, environment, function (err) {
   if (err) {
     console.log(err);
   }
-  console.log(`Wrote env details to env.json`);
+  console.log(`Successfully wrote environment details to env.json for admin-ui`);
 });
 
 // Write the encrypted Bearer token to a .env file to be read at startup
@@ -70,15 +75,6 @@ writeFile(`/rollcall/accessproxy/config/.env`, envFileContent, function(err) {
     console.log(err);
   }
 setTimeout(() => {
-  console.log(`Successfully wrote randomly generated and encrypted token .env file.`);
+  console.log(`Successfully wrote randomly generated token and environment information to .env file for accessproxy`);
 }, 5000);
 });
-
-// Write the TEMP UNENCRYPTED Bearer token to a file to be added to your conf-wsoneaccess.js file.
-//const tempfileContent = `${bearer}`;
-//writeFile(`ACCESS_PROXY_BEARER.deleteme`, tempfileContent, function(err) {
-//  if (err) {
-//    console.log(err);
-//  }
-//  console.log(`Wrote TEMPORARY UNENCRYPTED key to be added to the accessproxy config. Please make sure you delete this file after saving the content to your conf-wsoneaccess.js file.`);
-// });

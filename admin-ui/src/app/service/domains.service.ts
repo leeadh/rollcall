@@ -24,10 +24,10 @@ options = {
   };
 
 public getDomains(): Observable<any[]> {
-  return this.httpClient.get<any[]>('access/connectormanagement/directoryconfigs', { headers: this.headers });
+  return this.httpClient.get<any[]>('http://localhost/access/connectormanagement/directoryconfigs', { headers: this.headers });
 }
 
 public createDirectory(postbody): Observable<any[]> {
-return this.httpClient.post<any[]>('access/connectormanagement/directoryconfigs', postbody, this.options);
+return this.httpClient.post<any[]>('http://localhost/access/connectormanagement/directoryconfigs', postbody, this.options);
 }
 }

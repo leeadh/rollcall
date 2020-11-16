@@ -5,11 +5,11 @@ LABEL maintainer="TBWFDU"
 
 # Create volume for accessproxy 
 RUN mkdir -p /rollcall/accessproxy/config
-VOLUME /rollcall/accessproxy/config
+# VOLUME /rollcall/accessproxy/config
 # Create volume for accessproxy 
 RUN mkdir -p /rollcall/admin-ui/config && \
     mkdir /run/nginx
-VOLUME /rollcall/admin-ui/config
+# VOLUME /rollcall/admin-ui/config
 # Add container dependencies for build and run
 RUN apk add --update && \
     apk add nodejs && \
@@ -46,5 +46,5 @@ RUN mv /rollcall/rollcall.conf /etc/nginx/conf.d/default.conf && \
 EXPOSE 80
 EXPOSE 443
 
-# No bash in Alpine - and give it something to run when we want to run interactive.
-CMD ["sh"]
+# No bash in Alpine - go.sh runs nginx silently and outputs to /dev/null and allow accessproxy to write to console.
+CMD ["sh", "go.sh"]
