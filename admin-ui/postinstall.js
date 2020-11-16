@@ -13,6 +13,9 @@ const nodeId = require('node-machine-id');
 
 const machineId = nodeId.machineIdSync();
 
+//Read from pre-configured dotenv file to get Access URLs
+require('dotenv').config({ path: '/rollcall/accessproxy/config/.env' })
+
 // Function to generate a "pseudo-random" "pseudo" bearer token at post install for API authentication to accessproxy
 function genBearer(length) {
   let result           = '';
@@ -32,7 +35,13 @@ const encryptedBearer = cryptojs.AES.encrypt(bearer, machineId.toString());
 
 // Contents to be written to the .env file
 const envFileContent = `
-API_KEY =  ${encryptedBearer}
+BEARER=${bearer}
+BASEURL=${process.env.BASEURL}
+CLIENTID=${process.env.CLIENTID}
+CLIENTSECRET=${process.env.CLIENTSECRET}
+DOMAIN=${process.env.DOMAIN}
+OAUTHURL=${process.env.OAUTHURL}
+ACCESSURL=${process.env.ACCESSURL}
 `;
 const accessproxy = 'http://localhost:8888/access'
 const environment = `
@@ -41,7 +50,8 @@ const environment = `
     "accessproxy": "${accessproxy}",
     "bearer": "${bearer}",
     "encryptedBearer": "${encryptedBearer}",
-    "machineId": "${machineId}"
+    "machineId": "${machineId}",
+    "accessURL": "${process.env.ACCESSURL}"
   }
 }
 `;
@@ -55,7 +65,7 @@ writeFile(`./config/env.json`, environment, function (err) {
 });
 
 // Write the encrypted Bearer token to a .env file to be read at startup
-writeFile(`.env`, envFileContent, function(err) {
+writeFile(`/rollcall/accessproxy/config/.env`, envFileContent, function(err) {
   if (err) {
     console.log(err);
   }
@@ -65,10 +75,10 @@ setTimeout(() => {
 });
 
 // Write the TEMP UNENCRYPTED Bearer token to a file to be added to your conf-wsoneaccess.js file.
-const tempfileContent = `${bearer}`;
-writeFile(`ACCESS_PROXY_BEARER.deleteme`, tempfileContent, function(err) {
-  if (err) {
-    console.log(err);
-  }
-  console.log(`Wrote TEMPORARY UNENCRYPTED key to be added to the accessproxy config. Please make sure you delete this file after saving the content to your conf-wsoneaccess.js file.`);
-});
+//const tempfileContent = `${bearer}`;
+//writeFile(`ACCESS_PROXY_BEARER.deleteme`, tempfileContent, function(err) {
+//  if (err) {
+//    console.log(err);
+//  }
+//  console.log(`Wrote TEMPORARY UNENCRYPTED key to be added to the accessproxy config. Please make sure you delete this file after saving the content to your conf-wsoneaccess.js file.`);
+// });

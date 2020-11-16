@@ -16,7 +16,7 @@
     "auth": {
       "bearerToken": [
         {
-          "token": "TOKEN_FROM_ACCESS_BEARER_PROXY.deleteme_FILE",
+          "token": "process.env.BEARER",
           "readOnly": false
         }
       ]
@@ -26,12 +26,12 @@
     "entity": {
       "access": {
         "baseUrls": [
-          "https://YOUR_WORKSPACE_ONE_ACCESS_TENANT_URL/SAAS/jersey/manager/api/scim"
+          "process.env.BASEURL"
         ],
-        "clientId": "YOUR_CLIENTID",
-        "clientSecret": "YOUR_CLIENT_SECRET",
-        "domain": "YOUR_DOMAIN_NAME",
-        "oauthUrl": "https://YOUR_WORKSPACE_ONE_ACCESS_TENANT_URL/SAAS/auth/oauthtoken"
+        "clientId": "process.env.CLIENTID",
+        "clientSecret": "process.env.CLIENTSECRET",
+        "domain": "process.env.DOMAIN",
+        "oauthUrl": "process.env.OAUTHURL"
       }
   }
 }

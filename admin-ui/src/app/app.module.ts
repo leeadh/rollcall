@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppService } from './app.service';
 import { ConfigComponent } from './config/config.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -21,10 +20,6 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { ContentComponent } from './layouts/content/content.component';
 import { ContentsidenavComponent } from './layouts/contentsidenav/contentsidenav.component';
 import { SidenavComponent } from './layouts/sidenav/sidenav.component';
-
-export function init_app(appService: AppService) {
-  return () => { };
-}
 
 @NgModule({
   declarations: [
@@ -51,14 +46,7 @@ export function init_app(appService: AppService) {
     HttpClientModule,
     CommonModule
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: init_app,
-      multi: true,
-      deps: [AppService]
-  }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

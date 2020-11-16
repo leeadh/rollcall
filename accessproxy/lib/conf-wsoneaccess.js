@@ -43,6 +43,8 @@ const https = require('https')
 const HttpsProxyAgent = require('https-proxy-agent')
 const URL = require('url').URL
 const querystring = require('querystring')
+// add support for .env file and read it
+require('dotenv').config({ path: '/rollcall/accessproxy/config/.env' })
 
 // mandatory plugin initialization - start
 const path = require('path')

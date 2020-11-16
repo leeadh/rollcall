@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as data from '../../env.json';
+import * as data from 'env.json';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +21,5 @@ export class AppService {
           this.env = data;
           resolve(true);
       });
-      console.log(this.env.local)
   }
-
 }

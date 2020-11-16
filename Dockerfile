@@ -19,6 +19,7 @@ RUN apk add --update && \
     npm install -g python
 
 # Basedir of Rollcall
+
 WORKDIR /rollcall
 
 # Add the application dependency files
@@ -29,19 +30,18 @@ COPY . .
 
 # Run installs for Node.js, NPM and Angular
 RUN cd /rollcall/accessproxy && \
-    npm install --production --unsafe-perm
+    npm install --production --unsafe-perm && \
+    cp /rollcall/template.env /rollcall/accessproxy/config/.env
 RUN cd /rollcall/admin-ui && \
     npm install -g @angular/cli && \
     npm update && \
     ng update
 RUN cd /rollcall/admin-ui && \
     npm install --unsafe-perm && \
-    npm run-script build --prod
-# Copy the .env secrets file and the unencrypted bearer to the docker volumes location. Also copy the NGINX config.
-RUN cp /rollcall/admin-ui/env.json /rollcall/admin-ui/config/ && \
-    mv /rollcall/admin-ui/ACCESS_PROXY_BEARER.deleteme /rollcall/accessproxy/config/ && \
-    mv /rollcall/rollcall.conf /etc/nginx/conf.d/default.conf
-
+    ng build --prod
+# Copy the NGINX config.
+RUN mv /rollcall/rollcall.conf /etc/nginx/conf.d/default.conf && \
+    rm /rollcall/admin-ui/env.json
 # Expose port 80 and 443 in case we want to use SSL later
 EXPOSE 80
 EXPOSE 443

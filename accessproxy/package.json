@@ -48,6 +48,7 @@
     "passport-azure-ad": "^4.2.1",
     "soap": "^0.33.0",
     "tedious": "^9.2.1",
+    "dotenv": "^8.2.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
@@ -56,7 +57,7 @@
     "supertest": "^4.0.2"
   },
   "bugs": {
-    "url": "www.google.com"
+    "url": "http://www.google.com"
   },
   "directories": {
     "lib": "lib",
