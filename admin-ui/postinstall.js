@@ -62,7 +62,7 @@ const environment = `
 `;
 
 // Contents to be written to the env.json file for Admin UI
-writeFile(`./config/env.json`, environment, function (err) {
+writeFile(`/rollcall/admin-ui/config/env.json`, environment, function (err) {
   if (err) {
     console.log(err);
   }
@@ -76,5 +76,5 @@ writeFile(`/rollcall/accessproxy/config/.env`, envFileContent, function(err) {
   }
 setTimeout(() => {
   console.log(`Successfully wrote randomly generated token and environment information to .env file for accessproxy`);
-}, 5000);
+}, 3000);
 });

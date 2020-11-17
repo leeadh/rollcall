@@ -5,11 +5,11 @@ LABEL maintainer="TBWFDU"
 
 # Create volume for accessproxy 
 RUN mkdir -p /rollcall/accessproxy/config
-# VOLUME /rollcall/accessproxy/config
+
 # Create volume for accessproxy 
 RUN mkdir -p /rollcall/admin-ui/config && \
     mkdir /run/nginx
-# VOLUME /rollcall/admin-ui/config
+
 # Add container dependencies for build and run
 RUN apk add --update && \
     apk add nodejs && \
@@ -31,7 +31,7 @@ COPY . .
 # Run installs for Node.js, NPM and Angular
 RUN cd /rollcall/accessproxy && \
     npm install --production --unsafe-perm && \
-    cp /rollcall/template.env /rollcall/accessproxy/config/.env
+    cp /rollcall/env.template /rollcall/accessproxy/config/.env
 RUN cd /rollcall/admin-ui && \
     npm install -g @angular/cli && \
     npm update && \
@@ -40,8 +40,7 @@ RUN cd /rollcall/admin-ui && \
     npm install --unsafe-perm && \
     ng build --prod
 # Copy the NGINX config.
-RUN mv /rollcall/rollcall.conf /etc/nginx/conf.d/default.conf && \
-    rm /rollcall/admin-ui/env.json
+RUN mv /rollcall/rollcall.conf /etc/nginx/conf.d/default.conf
 # Expose port 80 and 443 in case we want to use SSL later
 EXPOSE 80
 EXPOSE 443
