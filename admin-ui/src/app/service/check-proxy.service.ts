@@ -17,6 +17,6 @@ export class CheckProxy {
 public checkProxy(): Observable<Response[]> {
 // tslint:disable-next-line: max-line-length
 console.log(this.headers);
-return this.httpclient.get<Response[]>('http://localhost/access/Users?attributes=userName&filter=userName%20eq%20%22adminsdsdsdsds%22', { headers: this.headers }).pipe(map((headers: any) => headers));
+return this.httpclient.get<Response[]>('/access/Users?attributes=userName&filter=userName%20eq%20%22adminsdsdsdsds%22', { headers: this.headers }).pipe(map((headers: any) => headers));
 }
 }
