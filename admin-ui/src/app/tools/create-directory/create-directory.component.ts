@@ -14,13 +14,15 @@ export class CreateDirectoryComponent implements OnInit {
   Domains
   ResponseBody
   constructor(private domainsService: DomainsService) { }
-
+  isWorking:boolean
 
   ngOnInit(): void {
 
-    this.domainsService.getDomains().subscribe(body => {
-     this.Domains = body;
-    });
+    this.domainsService.getDomains()
+    .subscribe(
+      body => { this.Domains = body; },
+      error => { console.log('error', error), this.isWorking = false;}
+      )      
   }
   
   

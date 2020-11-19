@@ -66,7 +66,26 @@
 <div class="clr-col-6">
       <span>
         <h3>Existing Directories</h3>
-<div style="padding-left: 0;">
+<div *ngIf="isWorking; else dirs" class="alert alert-app-level alert-warning" style="margin-bottom: 24px;" role="alert">
+  <br>
+  <div class="alert-items">
+    <div class="alert-item static">
+      <div class="alert-icon-wrapper">
+        <clr-icon class="alert-icon" shape="exclamation-triangle"></clr-icon>
+      </div>
+      <div class="alert-text">
+        Error: Could not communicate with Workspace ONE Access. Please check configuration.
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #dirs>
+  <div *ngIf="!Domains" style="display: flex; justify-content: center; padding-top: 50px;">
+        <span class="spinner spinner-sm" >
+          Loading...
+      </span>
+    </div>
+<div *ngIf="Domains" style="padding-left: 0;">
 <table class="table">
     <thead>
         <tr>
@@ -76,15 +95,16 @@
 
         </tr>
     </thead>
-    <tbody *ngIf="Domains">
+    <tbody>
         <tr *ngFor="let domain of Domains.body.items">
             <td class="left">{{ domain.name }}</td>
             <td class="left">{{ domain.type }}</td>
             <td class="left">{{ domain.directoryId }}</td>
           </tr>
     </tbody>
-</table>
+  </table>
 </div>
+</ng-template>
 </span>
 </div>
 </div>
