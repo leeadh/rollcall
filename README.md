@@ -15,7 +15,26 @@ Install Instructions here:
 [Install Instructions](https://github.com/tbwfdu/rollcall/wiki/Install-Instructions)
 
 --------
-v1.0.0 - Initial Release
+##### v1.1.0
+- Added Dockerfile to build a fully self sufficient container to run rollcall in. 
 
-Known Issues: 
+Moved files around to make it easier to build automated docker file.
+All environment secrets and URLs are now referenced at build from env.template and you need to edit this before builder the Docker container.
+After this, this information along with a randomly generated JWT Bearer token are saved into a ./config directory of both accessproxy and admin-ui directories. If you've added all the correct URLs and ClientID/Secrets, it will automatically start and run with no further config needed.
+Adding two Docker Volumes for the container to persist /rollcall/accessproxy/config and /rollcall/admin-ui/config will allow you to destroy and recreate the container without any intervention!
+
+
+*Fixed:*
+
+Removed the requirement to run in development mode as the container has NGINX configured a web server and reverse proxy for both components.
+
+
+
+##### v1.0.0 
+- Initial Release
+
+
+*Known Issues:*
+
+
 Admin UI still uses the built-in web server in development mode (ng serve / ng serve --prod) to run. It can be fully compiled in Production Mode but at the moment the API calls use the built-in Angular proxy to communicate with accessproxy to proxy calls to your Workspace ONE Access tenant which isn't easily configurable when compiled. Given that this component should not be externally facing anyway, this should not be a major concern and it is not required for the SCIM Proxy functionality to work if you do not want to run this component. 
